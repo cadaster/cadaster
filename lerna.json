@@ -1,0 +1,18 @@
+{
+  "packages": [
+    "packages/*",
+    "config/*",
+    "lab"
+  ],
+  "command": {
+    "publish": {
+      "conventionalCommits": true
+    },
+    "version": {
+      "allowBranch": "master",
+      "conventionalCommits": true,
+      "message": "chore(release): %s"
+    }
+  },
+  "version": "0.0.0"
+}

@@ -1,0 +1,26 @@
+{
+  "name": "@cadaster/conf-abc",
+  "version": "0.0.0",
+  "private": true,
+  "description": "A sample config package",
+  "author": "Miro <miro.ter.seri@gmail.com>",
+  "homepage": "https://github.com/cadaster/cadaster/tree/master/packages/conf-abc",
+  "license": "MIT",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cadaster/cadaster.git"
+  },
+  "scripts": {
+    "test": "ava --verbose --color",
+    "test:coverage": "nyc --reporter=text ava --verbose --color",
+    "test:watch": "ava -vw"
+  },
+  "bugs": {
+    "url": "https://github.com/cadaster/cadaster/issues"
+  },
+  "devDependencies": {
+    "ava": "^2.0.0",
+    "nyc": "^14.1.1"
+  }
+}

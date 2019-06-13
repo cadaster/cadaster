@@ -1,0 +1,15 @@
+{
+  "name": "@cadaster/lab",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Lab",
+  "author": "Miro <miro.ter.seri@gmail.com>",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava -v"
+  },
+  "devDependencies": {
+    "ava": "^1.4.1"
+  }
+}
