@@ -8,8 +8,5 @@
   "main": "index.js",
   "scripts": {
     "test": "ava -v"
-  },
-  "devDependencies": {
-    "ava": "^1.4.1"
   }
 }
