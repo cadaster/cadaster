@@ -1,26 +1,19 @@
-// Address dictionary
-const ADDRESSES = {
-  'exo, Hudson, Canada': [ -74.140602, 45.459373 ],
-  'EXO, Karlsruhe, Germany': [ 8.402304, 49.000396 ]
-}
-
 /**
  * Naive geocoding method
  *
  * Using dictionary lookup on exact match
  *
- * @sig :: String -> Undefined | [Number, Number]
+ * @sig :: Object -> String -> Undefined | [Number, Number]
  *
- * @param {string} address
+ * @param {Object} dict - key-value data source
+ * @param {string} address - key to lookup
  * @returns {Array} - long/lat coordinates pair
  */
 
-function geocode (address) {
-  return ADDRESSES[address]
+function geocode (dict, address) {
+  return dict[address]
 }
 
 // Expose
 
 module.exports = geocode
-
-module.exports.ADDRESSES = ADDRESSES
