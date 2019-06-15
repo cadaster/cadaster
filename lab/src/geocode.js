@@ -1,17 +1,17 @@
 /**
  * Naive geocoding method
  *
- * Using dictionary lookup on exact match
+ * Use provided data source
  *
- * @sig :: Object -> String -> Undefined | [Number, Number]
+ * @sig :: Source -> String -> Undefined | [Number, Number]
  *
- * @param {Object} dict - key-value data source
+ * @param {Source} source - data source
  * @param {string} address - key to lookup
  * @returns {Array} - long/lat coordinates pair
  */
 
-function geocode (dict, address) {
-  return dict[address]
+function geocode (source, address) {
+  return source.get(address)
 }
 
 // Expose

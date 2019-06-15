@@ -1,6 +1,7 @@
 import test from 'ava'
 
 import geocode from '../src/geocode'
+import Source from '../src/Source'
 
 // assets
 
@@ -23,7 +24,8 @@ const reportFrom = (dict) => (address) => {
   const toText = ([ long, lat ]) =>
     `(${long},${lat})`
 
-  const position = geocode(dict, address)
+  const source = Source({ dict })
+  const position = geocode(source, address)
 
   if (!position) {
     return 'Unknown'
