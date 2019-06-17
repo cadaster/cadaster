@@ -1,17 +1,22 @@
 import test from 'ava'
 
-import geocode from '../src/geocode'
-import Source from '../src/Source'
+import Adapter from '../src/adapter-geojson-fulltext'
 
 // assets
 
-const ADDRESS = 'exo, Hudson, Canada'
-const ADDRESS_OTHER = 'Exo, Bogatynia, Poland'
+const GEOJSON_DATA = require('./abcd.geo.json')
 
-const POSITION_OK = [ -74.140602, 45.459373 ]
-const POSITION_INVALID = [ '-70\'14', '45\'45' ]
+// hypothetic usage
 
-// hypothetic cases
+const adapter = new Adapter({ data: GEOJSON_DATA })
+
+function locateWith (address) {
+  const head = arr => arr[0]
+
+  return adapter
+    .search({ address })
+    .then(result => head(result.members))
+}
 
 /**
  * Show result as string
@@ -19,70 +24,60 @@ const POSITION_INVALID = [ '-70\'14', '45\'45' ]
  * @returns {String} - Info on position or 'Unknown'
  */
 
-const reportFrom = (dict) => (address) => {
-  // @sig :: [Number, Number] -> String
-  const toText = ([ long, lat ]) =>
-    `(${long},${lat})`
-
-  const source = Source({ dict })
-  const position = geocode(source, address)
-
-  if (!position) {
-    return 'Unknown'
+function compileReportFor (address) {
+  const toText = ({ location }) => {
+    const { coordinates } = location.geometry
+    const [ long, lat ] = coordinates
+    return `(${long},${lat})`
   }
 
-  return toText(position)
+  const resolve = location =>
+    location
+      ? toText(location)
+      : 'Unknown'
+
+  return locateWith(address)
+    .then(resolve)
 }
 
 // tests
 
-test.serial('optimistic cases', t => {
-  const stringify = reportFrom({
-    [ADDRESS]: POSITION_OK
-  })
+test('main cases', async t => {
+  const [{ geometry, properties }] = GEOJSON_DATA.features
+  const [ long, lat ] = geometry.coordinates
+  const address = properties.name
 
-  const [ long, lat ] = POSITION_OK
-  t.is(stringify(ADDRESS), `(${long},${lat})`)
+  await compileReportFor(address)
+    .then(report => {
+      t.is(report, `(${long},${lat})`)
+    })
 
-  t.notThrows(() => stringify(ADDRESS_OTHER))
-  t.is(stringify(ADDRESS_OTHER), 'Unknown')
+  await compileReportFor('xxxyyyzzz')
+    .then(report => {
+      t.is(report, 'Unknown')
+    })
 })
 
 // more realistic usage
 
-test.serial('ok/unknown case separation', t => {
-  const stringify = reportFrom({
-    [ADDRESS]: POSITION_OK
-  })
-
+test('ok/unknown case separation', async t => {
   const safeStringify = address => {
-    const res = stringify(address)
+    const ensafe = res => {
+      if (res !== 'Unknown') return res
 
-    if (res === 'Unknown') {
-      throw new Error('Unknown')
+      const err = new Error('Unknown')
+      return Promise.reject(err)
     }
 
-    return res
+    return compileReportFor(address)
+      .then(ensafe)
   }
 
-  t.notThrows(() => safeStringify(ADDRESS))
-  t.throws(() => safeStringify(ADDRESS_OTHER))
+  await t.notThrowsAsync(() => safeStringify('black'))
+  await t.throwsAsync(() => safeStringify('xxxyyyzzz'))
 })
 
 // known issues
 
-test.serial.failing('input validation', t => {
-  const stringify = reportFrom({})
-
-  const badInput = [ ADDRESS, ADDRESS_OTHER ]
-
-  t.throws(() => stringify(badInput), TypeError)
-})
-
-test.serial.failing('result validation', t => {
-  const stringify = reportFrom({
-    [ADDRESS]: POSITION_INVALID
-  })
-
-  t.throws(() => stringify(ADDRESS), TypeError)
-})
+test.todo('input validation')
+test.todo('safe results')
