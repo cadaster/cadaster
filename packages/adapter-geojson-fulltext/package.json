@@ -1,0 +1,30 @@
+{
+  "name": "@cadaster/adapter-geojson-fulltext",
+  "version": "0.0.0",
+  "private": true,
+  "description": "GeoJSON Adapter w/ full-text search",
+  "author": "Miro <miro.ter.seri@gmail.com>",
+  "homepage": "https://github.com/cadaster/cadaster/tree/master/packages/adapter-geojson-fulltext",
+  "license": "MIT",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cadaster/cadaster.git"
+  },
+  "scripts": {
+    "test": "ava --verbose --color",
+    "test:coverage": "nyc --reporter=text ava --verbose --color",
+    "test:watch": "ava -vw"
+  },
+  "bugs": {
+    "url": "https://github.com/cadaster/cadaster/issues"
+  },
+  "devDependencies": {
+    "ava": "^2.0.0",
+    "nyc": "^14.1.1"
+  },
+  "dependencies": {
+    "fuse.js": "^3.4.5",
+    "ramda": "^0.26.1"
+  }
+}

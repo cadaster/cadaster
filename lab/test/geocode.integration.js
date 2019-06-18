@@ -1,6 +1,6 @@
 import test from 'ava'
 
-import Adapter from '../src/adapter-geojson-fulltext'
+import Adapter from '@cadaster/adapter-geojson-fulltext'
 
 // assets
 

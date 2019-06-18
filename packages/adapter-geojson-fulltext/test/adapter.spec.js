@@ -1,10 +1,10 @@
 import test from 'ava'
 
-import Adapter from '../src/adapter-geojson-fulltext'
+import Adapter from '..'
 
 // assets
 
-const GEOJSON_DATA = require('./abcd.geo.json')
+const GEOJSON_DATA = require('./assets/abcd.geo.json')
 
 // macros
 
