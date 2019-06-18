@@ -1,8 +1,22 @@
 const got = require('got')
 
-//
+// settings
 
 const HOST = 'https://api-adresse.data.gouv.fr'
+
+// helpers
+
+const recover = response => {
+  const asPair = feature => {
+    const { score } = feature.properties
+    return { feature, score }
+  }
+
+  const features = response.features
+    .map(asPair)
+
+  return { features }
+}
 
 // methods
 
@@ -16,11 +30,13 @@ const HOST = 'https://api-adresse.data.gouv.fr'
  *
  * @return {Promise<GeoJSON.FeatureCollection>}
  */
+
 function search (ctx, query) {
   const url = `${ctx.host}/search?q=${query.address}`
 
   return got(url, { json: true })
     .then(res => res.body)
+    .then(recover)
 }
 
 /**

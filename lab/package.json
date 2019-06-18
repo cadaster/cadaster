@@ -10,6 +10,7 @@
     "test": "ava -v"
   },
   "dependencies": {
-    "@cadaster/adapter-geojson-fulltext": "*"
+    "@cadaster/adapter-geojson-fulltext": "*",
+    "@turf/turf": "^5.1.6"
   }
 }
