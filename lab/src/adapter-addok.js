@@ -1,22 +1,12 @@
 const got = require('got')
 
+const M = require('../src/types')
+
+const { FeatureCollection } = M
+
 // settings
 
 const HOST = 'https://api-adresse.data.gouv.fr'
-
-// helpers
-
-const recover = response => {
-  const asPair = feature => {
-    const { score } = feature.properties
-    return { feature, score }
-  }
-
-  const features = response.features
-    .map(asPair)
-
-  return { features }
-}
 
 // methods
 
@@ -36,7 +26,7 @@ function search (ctx, query) {
 
   return got(url, { json: true })
     .then(res => res.body)
-    .then(recover)
+    .then(FeatureCollection.from)
 }
 
 /**
@@ -45,9 +35,9 @@ function search (ctx, query) {
  * @constructor
  *
  * @param {Object} conf
- * @param {string} [conf.host = ]
+ * @param {string} conf.host
  *
- * @return {Provider}
+ * @return {Adapter}
  */
 
 class _Adapter {
