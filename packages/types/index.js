@@ -33,6 +33,14 @@ const FeatureCollection = Type({
   }
 })
 
+FeatureCollection.toString = function toJSON (collection) {
+  return JSON.stringify(collection)
+}
+
+FeatureCollection.prototype.toString = function () {
+  return FeatureCollection.toString(this)
+}
+
 module.exports = {
   FeatureCollection,
   Feature,
