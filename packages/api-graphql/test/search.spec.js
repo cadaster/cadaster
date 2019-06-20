@@ -34,7 +34,7 @@ test('optimistic', async t => {
   const input = { address: 'rue' }
 
   const checkResponse = res => {
-    console.log(res)
+    console.log(JSON.stringify(res, null, 2))
     t.pass()
   }
 

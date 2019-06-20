@@ -7,8 +7,6 @@ module.exports = {
 
       return adapter
         .search({ address })
-        .then(result => result.toString())
-        .then(body => ({ body }))
     }
   }
 }

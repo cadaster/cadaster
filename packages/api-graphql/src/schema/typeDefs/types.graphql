@@ -1,7 +1,22 @@
 input SearchInput {
+  adapter: String
   address: String
 }
 
+type Geometry {
+  coordinates: [Float]
+}
+
+type Properties {
+  label: String
+  score: Float
+}
+
+type Feature {
+  geometry: Geometry
+  properties: Properties
+}
+
 type SearchResult {
-  body: String
+  features: [Feature]
 }

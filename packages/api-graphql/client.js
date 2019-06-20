@@ -3,7 +3,15 @@ const { gql } = require('apollo-server')
 const query = gql`
   query ($input: SearchInput!) {
     search (input: $input) {
-      status
+      features {
+        geometry {
+          coordinates
+        }
+        properties {
+          label,
+          score
+        }
+      }
     }
   }
 `
