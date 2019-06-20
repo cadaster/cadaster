@@ -2,8 +2,13 @@ module.exports = {
   Query: {
     search (_, args, context) {
       const { adapter } = context
-      console.log(adapter, args)
-      return { status: 'ok' }
+
+      const { address } = args.input
+
+      return adapter
+        .search({ address })
+        .then(result => result.toString())
+        .then(body => ({ body }))
     }
   }
 }

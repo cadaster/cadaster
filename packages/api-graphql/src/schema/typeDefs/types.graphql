@@ -3,5 +3,5 @@ input SearchInput {
 }
 
 type SearchResult {
-  status: String
+  body: String
 }

@@ -1,8 +1,11 @@
+const AddokAdapter = require('@cadaster/adapter-addok')
+
 const createServer = require('.')
 
 // assets
 
-const server = createServer({ })
+const adapter = AddokAdapter({})
+const server = createServer({ adapter })
 
 server
   .listen()
