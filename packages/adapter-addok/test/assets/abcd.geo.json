@@ -1,0 +1,65 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "A",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -104.677422,
+          39.06047
+        ]
+      },
+      "properties": {
+        "name": "Black Forest",
+        "label": "Black Forest, CO, USA"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "B",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.815218,
+          52.679012
+        ]
+      },
+      "properties": {
+        "name": "Black Castle",
+        "label": "Black Castle, Thurles, Ireland"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "C",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.876543,
+          59.951621
+        ]
+      },
+      "properties": {
+        "name": "Black Castle",
+        "label": "Black Castle, Rasbo, Sweden"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "D",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.901872,
+          26.736239
+        ]
+      },
+      "properties": {
+        "name": "Red Road",
+        "label": "Red Road, Hendry County, FL, USA"
+      }
+    }
+  ]
+}
