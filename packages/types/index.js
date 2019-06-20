@@ -2,21 +2,14 @@ const Type = require('@cadaster/union-type')
 
 // types
 
-const Position = Type({
-  Coordinates: {
-    longitude: Number,
-    latitude: Number
+const Geometry = Type({
+  Point: {
+    coordinates: Array
   }
 })
 
-const Geometry = Type({
-  Point: [Position]
-})
-
-Geometry.from = body => {
-  const longitude = 10
-  const latitude = 10
-  const coordinates = Position.Coordinates(longitude, latitude)
+Geometry.fromFeature = feature => {
+  const { geometry: { coordinates } } = feature
   return Geometry.Point(coordinates)
 }
 
@@ -43,6 +36,5 @@ const FeatureCollection = Type({
 module.exports = {
   FeatureCollection,
   Feature,
-  Geometry,
-  Position
+  Geometry
 }

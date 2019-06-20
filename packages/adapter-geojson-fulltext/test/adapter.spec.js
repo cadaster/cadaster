@@ -2,34 +2,22 @@ import test from 'ava'
 
 import Adapter from '..'
 
+import * as T from '@cadaster/types'
+
 // assets
 
 const GEOJSON_DATA = require('./assets/abcd.geo.json')
 
 // macros
 
-const assertScoredLocation = (t, sl) => {
-  t.not(sl.location, undefined)
-  t.not(sl.score, undefined)
-}
-
-const assertScoredLocationList = (t, sll) => {
-  t.true(Array.isArray(sll), 'is array')
-
-  for (const i in sll) {
-    assertScoredLocation(t, sll[i])
-  }
-}
-
 const assertResult = (t, result) => {
-  assertScoredLocationList(t, result.members)
+  t.true(T.FeatureCollection.prototype.isPrototypeOf(result))
 }
 
 const assertResultSize = (t, result, size) => {
-  const { members } = result
+  const { features } = result
 
-  assertScoredLocationList(t, members)
-  t.is(members.length, size)
+  t.is(features.length, size)
 }
 
 // tests

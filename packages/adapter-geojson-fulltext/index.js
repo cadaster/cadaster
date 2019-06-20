@@ -1,6 +1,7 @@
 const Fuse = require('fuse.js')
 
 const R = require('ramda')
+const T = require('@cadaster/types')
 
 // Standard config
 
@@ -52,10 +53,14 @@ const configFrom = R.compose(
  * @returns {Object} - members
  */
 
-const memberFromMatch = R.applySpec({
-  location: R.prop('item'),
-  score: R.prop('score')
-})
+const featureFromMatch = body => {
+  const { item, score } = body
+
+  const geometry = T.Geometry.fromFeature(item)
+  const properties = R.merge(body.properties, { score })
+
+  return T.Feature.Feature(geometry, properties)
+}
 
 // methods
 
@@ -68,12 +73,13 @@ function search (ctx, query) {
   // Index
   const idx = new Fuse(data, config)
 
-  const members = idx
+  const features = idx
     .search(address)
-    .map(memberFromMatch)
+    .map(featureFromMatch)
 
   return Promise
-    .resolve({ members })
+    .resolve(features)
+    .then(T.FeatureCollection.FeatureCollection)
 }
 
 // class constructor
