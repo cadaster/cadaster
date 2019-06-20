@@ -4,10 +4,10 @@ const schema = require('./src/schema')
 
 // init
 
-function createServer ({ adapter }) {
+function createServer ({ adapters }) {
   return new ApolloServer({
     schema,
-    context: { adapter }
+    context: { adapters }
   })
 }
 

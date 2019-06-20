@@ -1,11 +1,16 @@
 const AddokAdapter = require('@cadaster/adapter-addok')
+const ESRIAdapter = require('@cadaster/adapter-esri')
 
 const createServer = require('.')
 
 // assets
 
-const adapter = AddokAdapter({})
-const server = createServer({ adapter })
+const adapters = {
+  addok: AddokAdapter({}),
+  esri: ESRIAdapter({})
+}
+
+const server = createServer({ adapters })
 
 server
   .listen()

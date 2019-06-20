@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@cadaster/adapter-geojson-fulltext": "*",
+    "@cadaster/adapter-esri": "*",
     "@cadaster/adapter-addok": "*",
     "apollo-server": "^2.5.0",
     "graphql": "^14.3.0",

@@ -1,5 +1,5 @@
 input SearchInput {
-  adapter: String
+  source: String
   address: String
 }
 
