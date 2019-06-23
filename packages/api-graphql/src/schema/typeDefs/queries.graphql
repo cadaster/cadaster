@@ -1,0 +1,5 @@
+# import * from 'types.graphql'
+
+type Query {
+  search (input: SearchInput): SearchResult
+}

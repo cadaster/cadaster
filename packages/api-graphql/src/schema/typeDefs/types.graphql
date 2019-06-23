@@ -1,0 +1,7 @@
+input SearchInput {
+  address: String
+}
+
+type SearchResult {
+  status: String
+}
