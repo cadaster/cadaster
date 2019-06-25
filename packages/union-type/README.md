@@ -6,6 +6,10 @@ Union types are a way to group different values together. You can think of them
 as a powerful form of enums with the possibility to have additional data
 associated with the possible values.
 
+## Acknowledgement
+
+- [palepind/union-type](https://github.com/paldepind/union-type)
+
 ## Table of contents
 
 * [Tutorial](#tutorial)

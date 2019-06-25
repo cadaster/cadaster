@@ -1,24 +1,39 @@
-var curryN = require('ramda/src/curryN')
-var compose = require('ramda/src/compose')
-var isString = function (s) { return typeof s === 'string' }
-var isNumber = function (n) { return typeof n === 'number' }
-var isBoolean = function (b) { return typeof b === 'boolean' }
-var isObject = function (value) {
-  var type = typeof value
-  return !!value && (type == 'object' || type == 'function')
-}
-var isFunction = function (f) { return typeof f === 'function' }
-var isArray = Array.isArray || function (a) { return 'length' in a }
+const R = require('ramda')
 
-var mapConstrToFn = function (group, constr) {
-  return constr === String ? isString
-    : constr === Number ? isNumber
-      : constr === Boolean ? isBoolean
-        : constr === Object ? isObject
-          : constr === Array ? isArray
-            : constr === Function ? isFunction
-              : constr === undefined ? group
-                : constr
+const isObject = function (value) {
+  var type = typeof value
+  return !!value && (type === 'object' || type === 'function')
+}
+
+const isArray = Array.isArray
+
+/** Get predicate for given constructor
+   *
+   * @param {Any} group
+   * @param {Function} ctor
+   *
+   * @returns {Function}
+   */
+
+function predForCtor (group, ctor) {
+  switch (ctor) {
+    case String:
+      return R.is(String)
+    case Number:
+      return R.is(Number)
+    case Boolean:
+      return R.is(Boolean)
+    case Array:
+      return R.is(Array)
+    case Function:
+      return R.is(Function)
+    case Object:
+      return isObject
+    case undefined:
+      return group
+    default:
+      return ctor
+  }
 }
 
 var numToStr = ['first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth']
@@ -31,7 +46,7 @@ var validate = function (group, validators, name, args) {
   }
   for (i = 0; i < args.length; ++i) {
     v = args[i]
-    validator = mapConstrToFn(group, validators[i])
+    validator = predForCtor(group, validators[i])
     if (Type.check === true &&
         (validator.prototype === undefined || !validator.prototype.isPrototypeOf(v)) &&
         (typeof validator !== 'function' || !validator(v))) {
@@ -49,19 +64,12 @@ function valueToArray (value) {
   return arr
 }
 
-function extractValues (keys, obj) {
-  var arr = []; var i
-  for (i = 0; i < keys.length; ++i) arr[i] = obj[keys[i]]
-  return arr
-}
-
 function constructor (group, name, fields) {
-  var validators; var keys = Object.keys(fields); var i
-  if (isArray(fields)) {
-    validators = fields
-  } else {
-    validators = extractValues(keys, fields)
-  }
+  const keys = Object.keys(fields)
+  const validators = isArray(fields)
+    ? fields
+    : R.props(keys, fields)
+
   function construct () {
     var val = Object.create(group.prototype); var i
     val._keys = keys
@@ -74,10 +82,14 @@ function constructor (group, name, fields) {
     }
     return val
   }
-  group[name] = keys.length === 0 ? construct() : curryN(keys.length, construct)
+
+  group[name] = keys.length === 0
+    ? construct()
+    : R.curryN(keys.length, construct)
+
   if (keys !== undefined) {
     group[name + 'Of'] = function (obj) {
-      return construct.apply(undefined, extractValues(keys, obj))
+      return construct.apply(undefined, R.props(keys, obj))
     }
   }
 }
@@ -104,8 +116,8 @@ function rawCase (type, cases, value, arg) {
   }
 }
 
-var typeCase = curryN(3, rawCase)
-var caseOn = curryN(4, rawCase)
+var typeCase = R.curryN(3, rawCase)
+var caseOn = R.curryN(4, rawCase)
 
 function createIterator () {
   return {
@@ -121,7 +133,7 @@ function createIterator () {
 }
 
 function Type (desc) {
-  var key; var res; var obj = {}
+  var obj = {}
   obj.case = typeCase(obj)
   obj.caseOn = caseOn(obj)
 
@@ -130,15 +142,18 @@ function Type (desc) {
   obj.prototype.case = function (cases) { return obj.case(cases, this) }
   obj.prototype.caseOn = function (cases) { return obj.caseOn(cases, this) }
 
-  for (key in desc) {
-    res = constructor(obj, key, desc[key])
+  for (let key in desc) {
+    constructor(obj, key, desc[key])
   }
+
   return obj
 }
 
 Type.check = true
 
-Type.ListOf = function (T) {
+module.exports = Type
+
+module.exports.ListOf = function (T) {
   var List = Type({ List: [Array] })
   var innerType = Type({ T: [T] }).T
   var validate = List.case({
@@ -153,7 +168,5 @@ Type.ListOf = function (T) {
       return true
     }
   })
-  return compose(validate, List.List)
+  return R.compose(validate, List.List)
 }
-
-module.exports = Type

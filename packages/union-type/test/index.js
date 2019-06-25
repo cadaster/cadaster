@@ -1,5 +1,5 @@
 var assert = require('assert')
-var Type = require('../union-type.js')
+var Type = require('..')
 
 function isNumber (n) { return typeof n === 'number' }
 function T () { return true }
