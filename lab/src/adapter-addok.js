@@ -1,12 +1,23 @@
 const got = require('got')
 
+const R = require('ramda')
 const M = require('../src/types')
-
-const { FeatureCollection } = M
 
 // settings
 
 const HOST = 'https://api-adresse.data.gouv.fr'
+
+// helpers
+
+function recover (body) {
+  const pipe = R.compose(
+    M.FeatureCollection.FeatureCollection,
+    R.map(M.Feature.from),
+    R.prop('features')
+  )
+
+  return pipe(body)
+}
 
 // methods
 
@@ -26,7 +37,7 @@ function search (ctx, query) {
 
   return got(url, { json: true })
     .then(res => res.body)
-    .then(FeatureCollection.from)
+    .then(recover)
 }
 
 /**

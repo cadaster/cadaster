@@ -1,15 +1,6 @@
-// FeatureCollection
-// geocoder :: String
-// features :: [Feature]
+const Type = require('@cadaster/union-type')
 
-// Feature
-// id :: Maybe String
-// geometry :: Geometry
-// properties :: Record { address :: Address,
-//                        score :: Score }
-const R = require('ramda')
-
-const Type = require('union-type')
+// types
 
 const Position = Type({
   Coordinates: {
@@ -49,12 +40,9 @@ const FeatureCollection = Type({
   }
 })
 
-FeatureCollection.from = (body) => {
-  const features = R.map(Feature.from, body.features)
-  return FeatureCollection.FeatureCollection(features)
-}
-
 module.exports = {
   FeatureCollection,
-  Feature
+  Feature,
+  Geometry,
+  Position
 }

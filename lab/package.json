@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@cadaster/adapter-geojson-fulltext": "*",
-    "@turf/turf": "^5.1.6",
-    "union-type": "^0.4.1"
+    "@cadaster/union-type": "*",
+    "@turf/turf": "^5.1.6"
   }
 }
