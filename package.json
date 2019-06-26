@@ -7,21 +7,13 @@
     "lint": "standard packages/*/lib/**/*.js",
     "test": "lerna run test --concurrency 1 --stream",
     "test:coverage": "lerna run test:coverage --concurrency 1 --stream",
-    "postinstall": "lerna bootstrap --hoist"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/cadaster/cadaster.git"
+    "postinstall": "lerna bootstrap"
   },
   "keywords": [
     "cadaster"
   ],
   "author": "Miro Ter-Seri",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/cadaster/cadaster/issues"
-  },
-  "homepage": "https://github.com/cadaster/cadaster#readme",
   "devDependencies": {
     "@commitlint/cli": "^8.0.0",
     "@commitlint/config-conventional": "^8.0.0",

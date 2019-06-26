@@ -7,7 +7,7 @@
     "test": "test"
   },
   "dependencies": {
-    "ramda": "^0.24.0"
+    "ramda": "^0.26.1"
   },
   "devDependencies": {
     "babel": "^5.8.21",
@@ -15,10 +15,6 @@
   },
   "scripts": {
     "test": "mocha"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/cadaster/cadaster.git"
   },
   "keywords": [
     "union",

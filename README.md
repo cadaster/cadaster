@@ -10,20 +10,18 @@
 
 Following steps should derive to full development installation
 
+- clone this repo
+- go to the root of repo directory
+- install root dependencies
+
 ```sh
-# Clone this repo
-git clone https://github.com/cadaster/cadaster
-
-# Go to repo directory
-cd cadaster
-
 # Install root dependencies
 npm install
 ```
 
-This should trigger npm `postinstall` hook to resolve dependencies for node
-packages w/ Lerna. To run this manually when needed run npm script `bootstrap`
-which is an alias for
+This install step should trigger npm `postinstall` hook to resolve dependencies 
+for node packages w/ Lerna. To run this manually when needed run npm script 
+`bootstrap` which is an alias for
 
 ```
 lerna bootstrap --hoist
