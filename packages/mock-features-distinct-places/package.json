@@ -1,0 +1,26 @@
+{
+  "name": "@cadaster/mock-features-distinct-places",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Hand-made list of places formatted as GeoJSON features.",
+  "author": "Miro <miro.ter.seri@gmail.com>",
+  "homepage": "https://github.com/cadaster/cadaster/tree/master/packages/mock-features-distinct-places",
+  "license": "MIT",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cadaster/cadaster.git"
+  },
+  "scripts": {
+    "test": "ava --verbose --color",
+    "test:coverage": "nyc --reporter=text ava --verbose --color",
+    "test:watch": "ava -vw"
+  },
+  "bugs": {
+    "url": "https://github.com/cadaster/cadaster/issues"
+  },
+  "devDependencies": {
+    "ava": "^2.0.0",
+    "nyc": "^14.1.1"
+  }
+}
