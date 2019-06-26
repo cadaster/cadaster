@@ -15,9 +15,9 @@ npm install @cadaster/adapter-mock
 ```js
 const Adapter = require('@cadaster/adapter-mock')
 
-const data = require('./data.geojson')
+const { features } = require('./feature-collection.geojson')
 
-const adapter = new Adapter({ data })
+const adapter = new Adapter({ features })
 
 adapter
   .search('an address line')
