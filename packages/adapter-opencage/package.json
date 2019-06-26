@@ -1,0 +1,31 @@
+{
+  "name": "@cadaster/adapter-opencage",
+  "version": "0.0.0",
+  "private": true,
+  "description": "OpenCage Adapter",
+  "author": "Miro <miro.ter.seri@gmail.com>",
+  "homepage": "https://github.com/cadaster/cadaster/tree/master/packages/adapter-opencage",
+  "license": "MIT",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cadaster/cadaster.git"
+  },
+  "scripts": {
+    "test": "ava --verbose --color",
+    "test:coverage": "nyc --reporter=text ava --verbose --color",
+    "test:watch": "ava -vw"
+  },
+  "bugs": {
+    "url": "https://github.com/cadaster/cadaster/issues"
+  },
+  "devDependencies": {
+    "ava": "^2.0.0",
+    "nyc": "^14.1.1"
+  },
+  "dependencies": {
+    "@cadaster/types": "*",
+    "opencage-api-client": "^0.5.0",
+    "ramda": "^0.26.1"
+  }
+}

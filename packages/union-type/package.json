@@ -1,0 +1,29 @@
+{
+  "name": "@cadaster/union-type",
+  "version": "0.0.1",
+  "description": "Union types for JavaScript",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "ramda": "^0.24.0"
+  },
+  "devDependencies": {
+    "babel": "^5.8.21",
+    "mocha": "^2.5.3"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cadaster/cadaster.git"
+  },
+  "keywords": [
+    "union",
+    "type",
+    "adt"
+  ],
+  "license": "MIT"
+}

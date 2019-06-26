@@ -1,0 +1,22 @@
+input SearchInput {
+  source: String
+  address: String
+}
+
+type Geometry {
+  coordinates: [Float]
+}
+
+type Properties {
+  label: String
+  score: Float
+}
+
+type Feature {
+  geometry: Geometry
+  properties: Properties
+}
+
+type SearchResult {
+  features: [Feature]
+}
