@@ -1,10 +1,10 @@
 {
-  "name": "@cadaster/adapter-geojson-fulltext",
+  "name": "@cadaster/adapter-mock",
   "version": "0.0.0",
   "private": true,
   "description": "GeoJSON Adapter w/ full-text search",
   "author": "Miro <miro.ter.seri@gmail.com>",
-  "homepage": "https://github.com/cadaster/cadaster/tree/master/packages/adapter-geojson-fulltext",
+  "homepage": "https://github.com/cadaster/cadaster/tree/master/packages/adapter-mock",
   "license": "MIT",
   "main": "index.js",
   "repository": {

@@ -1,19 +1,19 @@
-# :package: Adapter GeoJSON (full-text)
+# :package: Adapter Mock 
 
-An geocoding adapter with reusable API
+An geocoding adapter for GeoJSON (full-text)
 
 ## Getting Started
 
 ### Installation
 
 ```sh
-npm install @cadaster/adapter-geojson-fulltext
+npm install @cadaster/adapter-mock
 ```
 
 ### Usage
 
 ```js
-const Adapter = require('@cadaster/adapter-geojson-fulltext')
+const Adapter = require('@cadaster/adapter-mock')
 
 const data = require('./data.geojson')
 
