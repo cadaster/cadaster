@@ -20,6 +20,7 @@
     "url": "https://github.com/cadaster/cadaster/issues"
   },
   "devDependencies": {
+    "@cadaster/mock-features-distinct-places": "*",
     "ava": "^2.0.0",
     "nyc": "^14.1.1"
   },

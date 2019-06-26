@@ -6,7 +6,7 @@ import * as T from '@cadaster/types'
 
 // assets
 
-const GEOJSON_DATA = require('./assets/abcd.geo.json')
+const GEOJSON_DATA = require('@cadaster/mock-features-distinct-places')
 
 // macros
 
