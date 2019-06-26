@@ -30,7 +30,7 @@ const FUSE_CONFIG_DEFAULT = {
  * @return {Array<Feature>}
  */
 
-const dataFrom = R.pathOr([], ['data', 'features'])
+const featuresFrom = R.propOr([], 'features')
 
 /**
  * Safely get `config` object from given `Context`
@@ -41,7 +41,7 @@ const dataFrom = R.pathOr([], ['data', 'features'])
  */
 
 const configFrom = R.compose(
-  R.mergeRight(FUSE_CONFIG_DEFAULT),
+  R.mergeDeepRight(FUSE_CONFIG_DEFAULT),
   R.propOr({}, 'config')
 )
 
@@ -65,29 +65,27 @@ const featureFromMatch = body => {
 // methods
 
 function search (ctx, query) {
-  const data = dataFrom(ctx)
-  const config = configFrom(ctx)
-
-  const { address } = query
+  const { features, config } = ctx
 
   // Index
-  const idx = new Fuse(data, config)
+  const idx = new Fuse(features, config)
 
-  const features = idx
+  const { address } = query
+  const hits = idx
     .search(address)
     .map(featureFromMatch)
 
   return Promise
-    .resolve(features)
+    .resolve(hits)
     .then(T.FeatureCollection.FeatureCollection)
 }
 
 // class constructor
 
 class _Adapter {
-  constructor (opts) {
-    this.config = opts.config
-    this.data = opts.data
+  constructor (opts = {}) {
+    this.features = featuresFrom(opts)
+    this.config = configFrom(opts)
   }
 
   search (query) {
@@ -97,8 +95,8 @@ class _Adapter {
 
 // constructor
 
-function Adapter (opts) {
-  return new _Adapter(opts)
+function Adapter (data, config) {
+  return new _Adapter(data, config)
 }
 
 module.exports = Adapter

@@ -6,7 +6,7 @@ import * as T from '@cadaster/types'
 
 // assets
 
-const GEOJSON_DATA = require('./assets/abcd.geo.json')
+const { features } = require('@cadaster/mock-features-distinct-places')
 
 // macros
 
@@ -15,9 +15,7 @@ const assertResult = (t, result) => {
 }
 
 const assertResultSize = (t, result, size) => {
-  const { features } = result
-
-  t.is(features.length, size)
+  t.is(result.features.length, size)
 }
 
 // tests
@@ -25,7 +23,7 @@ const assertResultSize = (t, result, size) => {
 test('signature', async t => {
   t.is(typeof Adapter, 'function')
 
-  const adapter = new Adapter({ data: GEOJSON_DATA })
+  const adapter = new Adapter({ features })
 
   t.is(typeof adapter.search, 'function')
 
@@ -39,16 +37,15 @@ test('signature', async t => {
 })
 
 test('config', async t => {
-  const data = GEOJSON_DATA
   const address = 'black forest'
 
-  await Adapter({ data })
+  await Adapter({ features })
     .search({ address })
     .then(result => {
       assertResultSize(t, result, 3)
     })
 
-  await Adapter({ data, config: { threshold: 0.3 } })
+  await Adapter({ features, config: { threshold: 0.3 } })
     .search({ address })
     .then(result => {
       assertResultSize(t, result, 1)
