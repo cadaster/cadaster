@@ -7,7 +7,7 @@
     "lint": "standard packages/*/lib/**/*.js",
     "test": "lerna run test --concurrency 1 --stream",
     "test:coverage": "lerna run test:coverage --concurrency 1 --stream",
-    "postinstall": "lerna bootstrap --hoist"
+    "postinstall": "lerna bootstrap"
   },
   "keywords": [
     "cadaster"
