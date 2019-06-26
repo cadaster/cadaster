@@ -1,15 +1,15 @@
 {
   "name": "@cadaster/api-graphql",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A proof-of-concept GraphQL API server",
   "main": "index.js",
   "scripts": {
     "test": "ava -v"
   },
   "dependencies": {
-    "@cadaster/adapter-mock": "*",
-    "@cadaster/adapter-esri": "*",
-    "@cadaster/adapter-addok": "*",
+    "@cadaster/adapter-addok": "^0.1.0",
+    "@cadaster/adapter-esri": "^0.1.0",
+    "@cadaster/adapter-mock": "^0.1.0",
     "apollo-server": "^2.5.0",
     "graphql": "^14.3.0",
     "graphql-import": "^0.7.1"

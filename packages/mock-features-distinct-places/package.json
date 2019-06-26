@@ -1,6 +1,6 @@
 {
   "name": "@cadaster/mock-features-distinct-places",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "description": "Hand-made list of places formatted as GeoJSON features.",
   "author": "Miro <miro.ter.seri@gmail.com>",

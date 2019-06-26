@@ -1,6 +1,6 @@
 {
   "name": "@cadaster/conf-abc",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "description": "A sample config package",
   "author": "Miro <miro.ter.seri@gmail.com>",

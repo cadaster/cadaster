@@ -1,7 +1,7 @@
 {
   "packages": [
-    "packages/*",
-    "config/*"
+    "config/*",
+    "packages/*"
   ],
   "command": {
     "bootstrap": {
@@ -16,5 +16,5 @@
       "message": "chore(release): %s"
     }
   },
-  "version": "0.0.0"
+  "version": "0.1.0"
 }

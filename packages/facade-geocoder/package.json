@@ -1,6 +1,6 @@
 {
   "name": "@cadaster/facade-geocoder",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "description": "Configurable facade for business logic",
   "author": "Miro <miro.ter.seri@gmail.com>",
@@ -16,9 +16,9 @@
     "nyc": "^14.1.1"
   },
   "dependencies": {
-    "@cadaster/adapter-addok": "*",
-    "@cadaster/adapter-esri": "*",
-    "@cadaster/adapter-mock": "*",
-    "@cadaster/adapter-opencage": "*"
+    "@cadaster/adapter-addok": "^0.1.0",
+    "@cadaster/adapter-esri": "^0.1.0",
+    "@cadaster/adapter-mock": "^0.1.0",
+    "@cadaster/adapter-opencage": "^0.1.0"
   }
 }

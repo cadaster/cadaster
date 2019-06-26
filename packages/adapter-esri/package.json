@@ -1,6 +1,6 @@
 {
   "name": "@cadaster/adapter-esri",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "description": "ArcGIS ESRI Adapter",
   "author": "Miro <miro.ter.seri@gmail.com>",
@@ -16,7 +16,7 @@
     "nyc": "^14.1.1"
   },
   "dependencies": {
-    "@cadaster/types": "*",
+    "@cadaster/types": "^0.1.0",
     "@esri/arcgis-rest-common-types": "^1.19.2",
     "@esri/arcgis-rest-geocoder": "^1.19.2",
     "@esri/arcgis-rest-request": "^2.1.0",
