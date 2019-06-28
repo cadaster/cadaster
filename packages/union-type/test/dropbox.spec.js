@@ -10,7 +10,7 @@ test('array of types', t => {
 
   t.throws(() => {
     Shape([1, Point.Point(1, 2), 3])
-  }, /wrong value 1 passed to location first in List/)
+  }, /wrong value 1 passed at index 0 in List/)
 
   t.throws(() => {
     Shape([Point.Point(1, 2), Point.Point('3', 1)])
