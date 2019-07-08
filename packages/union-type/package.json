@@ -9,10 +9,6 @@
   "dependencies": {
     "ramda": "^0.26.1"
   },
-  "devDependencies": {
-    "babel": "^5.8.21",
-    "mocha": "^2.5.3"
-  },
   "scripts": {
     "test": "mocha"
   },
@@ -21,5 +17,8 @@
     "type",
     "adt"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "ava": "^2.1.0"
+  }
 }
